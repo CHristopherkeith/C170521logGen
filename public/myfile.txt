@@ -1,0 +1,29 @@
+2017-05-21 21:31:56 +0800
+modify before 
+id: 1 name: camera price: 8,000
+modify after 
+id: 1 name: camera price: 8,001
+2017-05-21 21:32:17 +0800
+add 
+id: 10 name: new price: 1
+2017-05-21 21:32:39 +0800
+delete 
+id: 1 name: new price: 1
+2017-05-21 21:33:17 +0800
+delete 
+id: 10 name: new price: 1
+2017-05-21 21:34:17 +0800
+add 
+id: 11 name: camera price: 8,000
+
+2017-05-21 21:36:11 +0800
+modify before 
+id: 11 name: camera price: 8,000
+modify after 
+id: 11 name: camera price: 8,001
+2017-05-21 21:36:39 +0800
+add 
+id: 12 name: new price: 1
+2017-05-21 21:37:04 +0800
+delete 
+id: 12 name: new price: 1

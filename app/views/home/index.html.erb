@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Files</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<style type="text/css">
+		body{
+			/*background: yellow;*/
+			width: 600px;
+			height: 600px;
+		}
+	</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="init()">
+	<div style="width: 650px;">
+		<select ng-change="selectChange()" ng-model="selectData" ng-options="item.name for item in productNames">
+		</select>
+		<span>名称</span><input type="text" ng-model="products.name">
+		<span>价格</span><input type="text" ng-model="products.price">
+		<button ng-click="modify()">修改</button>
+		<button ng-click="add()">增加</button>
+		<button ng-click="delete()">删除</button>
+		<button ng-click="openFile()">文件</button>
+		<button ng-click="deleteFile()">删除文件</button>
+	</div>
+	
+</body>
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</html>

@@ -180,7 +180,7 @@ myApp.controller('myCtrl',['$scope','$http',function($scope,$http){
             headers:{'X-CSRF-Token':token}/*,
             params: $scope.products*/
         }).success(function(data,status,headers,config) {
-            console.log(data)
+            // console.log(data)
             if(data.success){
                 // $scope.productNames = data.result;
                 // $scope.products = data.result;
@@ -191,6 +191,62 @@ myApp.controller('myCtrl',['$scope','$http',function($scope,$http){
         }).error(function(data,status,headers,config) {
             console.log('fail')
         }); 
+    }
+
+    $scope.export = function(){
+
+        // console.log('foo')
+
+        var token = $('meta[name="csrf-token"]').attr('content');
+
+
+        $http({
+            method: 'post',
+            url: 'project/export',
+            headers:{'X-CSRF-Token':token}/*,
+            params: $scope.products*/
+        }).success(function(data,status,headers,config) {
+            console.log(data)
+            if(data.success){
+                // $scope.productNames = data.result;
+                // $scope.products = data.result;
+                console.log('export success')
+            }else{
+                console.log(data.msg)
+            }
+        }).error(function(data,status,headers,config) {
+            console.log('fail')
+        }); 
+        
+    }
+
+    $scope.parseTest = function(){
+
+        // console.log('foo')
+
+        var token = $('meta[name="csrf-token"]').attr('content');
+
+        var str = '[1,2]'
+
+        $http({
+            method: 'post',
+            url: 'project/parseTest',
+            headers:{'X-CSRF-Token':token},
+            params: {str:str}
+        }).success(function(data,status,headers,config) {
+            console.log(data)
+            if(data.success){
+                // $scope.productNames = data.result;
+                // $scope.products = data.result;
+                // console.log('export success')
+                console.log(data.result)
+            }else{
+                console.log(data.msg)
+            }
+        }).error(function(data,status,headers,config) {
+            console.log('fail')
+        }); 
+        
     }
 
 	$scope.linkDatabase = function(){
@@ -216,5 +272,7 @@ myApp.controller('myCtrl',['$scope','$http',function($scope,$http){
         })
 
 	}
+
+
 
 }])

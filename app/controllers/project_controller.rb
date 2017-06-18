@@ -164,5 +164,32 @@ class ProjectController < ApplicationController
 		render :json=>rs
 	end
 
+	def export
+		require "spreadsheet"  
+		rs = {}
+		begin
+			book = Spreadsheet::Workbook.new
+			rs[:success] = true
+		rescue Exception => e
+			rs[:msg] = e.message
+			rs[:success] = false
+		end
+		render :json=>rs
+	end
+
+	def parseTest
+		rs = {}
+		begin
+			p 'parseTestparseTestparseTestparseTest'
+			str = eval(params[:str])
+			rs[:result] = str
+			rs[:success] = true
+		rescue Exception => e
+			rs[:msg] = e.message
+			rs[:success] = false
+		end
+		render :json=>rs
+	end
+
 
 end

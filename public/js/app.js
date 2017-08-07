@@ -249,6 +249,18 @@ myApp.controller('myCtrl',['$scope','$http',function($scope,$http){
         
     }
 
+    $scope.submit = function(){
+
+        var token = $('meta[name="csrf-token"]').attr('content');
+
+        // document.getElementById('token').value = token;
+
+        $scope.token = token;
+
+        document.getElementById('submitinput').click();
+
+    }
+
 	$scope.linkDatabase = function(){
 
 		$http({

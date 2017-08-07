@@ -8,3 +8,8 @@ modify before
 id: 4 name: car1 price: 8,888,000
 modify after 
 id: 4 name: car price: 8,888,000
+2017-08-07 22:12:15 +0800
+modify before 
+id: 11 name: camera price: 8,000
+modify after 
+id: 11 name: camera price: 8,0001

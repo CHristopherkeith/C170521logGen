@@ -25,6 +25,14 @@
 		<button ng-click="deleteFile()">删除文件</button>
 		<button ng-click="export()">导出文件</button>
 		<button ng-click="parseTest()">解析测试</button>
+		<form method="post" action="project/import" enctype="multipart/form-data">
+			选择一个文件:
+			<input type="file" name="uploadFile" />
+			<br/><br/>
+			<!-- <input type="text" name="X-CSRF-Token" ng-model="token" id="token"/> -->
+			<input type="submit" value="上传" id="submitinput"/>
+		</form>
+		<!-- <button ng-click="submit()">上传文件</button> -->
 	</div>
 	
 </body>

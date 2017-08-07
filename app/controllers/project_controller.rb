@@ -1,3 +1,4 @@
+require 'json'
 class ProjectController < ApplicationController
 	def linkDatabase
 		begin
@@ -31,7 +32,7 @@ class ProjectController < ApplicationController
 			rs[:msg] = e.message
 			rs[:success] = false
 		end
-		rs[:result] = result
+		rs[:result] = result.to_xml
 		render :json=>rs
 	end
 
@@ -175,6 +176,21 @@ class ProjectController < ApplicationController
 			rs[:success] = false
 		end
 		render :json=>rs
+	end
+
+	def import
+		begin
+			rs = {}
+			content = ''
+			uploadFile = params[:uploadFile]
+			content =  uploadFile.open.read
+			content_json =  Hash.from_xml(content).to_json
+			# content_json 存数据库...
+		rescue Exception => e
+			rs[:msg] = e.message
+			rs[:success] = false
+		end
+		render :json=>'上传成功'
 	end
 
 	def parseTest

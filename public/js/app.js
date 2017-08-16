@@ -26,6 +26,118 @@ myApp.controller('myCtrl',['$scope','$http',function($scope,$http){
         console.log('fail')
     }); 
 
+    //////////sort/////////////
+
+    function mySorter(a, b){
+        if (/^\d/.test(a) ^ /^\D/.test(b)) return a>b?1:(a==b?0:-1);
+        return a>b?-1:(a==b?0:1);
+    }
+     
+    var pyArray=['p2','p11','p1']
+
+    //["a","a31","b","d","e","fa","fw2","t","0","2fs","4","5"]
+     
+    console.log(pyArray.sort(mySorter))
+
+    /**
+    * 比较函数
+    * @param {Object} param1 要比较的参数1
+    * @param {Object} param2 要比较的参数2
+    * @return {Number} 如果param1 > param2 返回 1
+    *                     如果param1 == param2 返回 0
+    *                     如果param1 < param2 返回 -1
+    */
+    function compareFunc(param1,param2){
+     //如果两个参数均为字符串类型
+     if(typeof param1 == "string" && typeof param2 == "string"){
+         return param1.localeCompare(param2);
+     }
+     //如果参数1为数字，参数2为字符串
+     if(typeof param1 == "number" && typeof param2 == "string"){
+         return -1;
+     }
+     //如果参数1为字符串，参数2为数字
+     if(typeof param1 == "string" && typeof param2 == "number"){
+         return 1;
+     }
+     //如果两个参数均为数字
+     if(typeof param1 == "number" && typeof param2 == "number"){
+         if(param1 > param2) return 1;
+         if(param1 == param2) return 0;
+         if(param1 < param2) return -1;
+     }
+    }
+
+    var by = function(name){
+        return function(o, p){
+            var a, b;
+            if (typeof o === "object" && typeof p === "object" && o && p) {
+             a = o[name];
+             b = p[name];
+             if (a === b) {
+               return 0;
+             }
+             if (typeof a === typeof b) {
+                // console.log(a.toSource())
+                // console.log(b)
+                // console.log(a-b<0)
+               // return a < b ? -1 : 1;
+               // console.log(a.localeCompare(b))
+               // console.log(parseInt(a))
+               return a.localeCompare(b);
+             }
+             console.log(typeof a < typeof b)
+             return typeof a < typeof b ? -1 : 1;
+            }
+            else {
+             throw ("error");
+            }
+        }
+
+        // return function(a,b){
+        //  param1 = a[name]
+        //  param2 = b[name]
+        //  //如果两个参数均为字符串类型
+        //  if(typeof param1 == "string" && typeof param2 == "string"){
+        //      return param1.localeCompare(param2);
+        //  }
+        //  //如果参数1为数字，参数2为字符串
+        //  if(typeof param1 == "number" && typeof param2 == "string"){
+        //      return -1;
+        //  }
+        //  //如果参数1为字符串，参数2为数字
+        //  if(typeof param1 == "string" && typeof param2 == "number"){
+        //      return 1;
+        //  }
+        //  //如果两个参数均为数字
+        //  if(typeof param1 == "number" && typeof param2 == "number"){
+        //      if(param1 > param2) return 1;
+        //      if(param1 == param2) return 0;
+        //      if(param1 < param2) return -1;
+        //  }
+
+        // }
+    }
+
+    function sort(a,b){
+        console.log(a.text - b.text)
+        return a.text - b.text
+    }
+
+    var sortArr = [
+        {text:'p2'},
+        {text:'p1'},
+        {text:'p11'},
+        // {text:'1/2/p11'},
+        // {text:'1/1/p1'},
+        // {text:'1/11/p11'},
+        // {text:'1/1/p2'},
+    ]
+
+   sortArr.sort(by('text')).forEach(function(item){
+    console.log(item)
+   })
+
     $scope.selectChange = function(){
         // console.log($scope.selectData)
 

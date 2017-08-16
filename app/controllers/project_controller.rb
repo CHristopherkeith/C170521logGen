@@ -32,7 +32,8 @@ class ProjectController < ApplicationController
 			rs[:msg] = e.message
 			rs[:success] = false
 		end
-		rs[:result] = result.to_xml
+		# rs[:result] = result.to_xml
+		rs[:result] = result
 		render :json=>rs
 	end
 

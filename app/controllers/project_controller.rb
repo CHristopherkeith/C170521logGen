@@ -208,5 +208,20 @@ class ProjectController < ApplicationController
 		render :json=>rs
 	end
 
-
+	def getDatas
+		rs = {}
+		begin
+			if params[:coderId] == 'codeMonkey'
+				rs[:result] = 'finish coding ruby!'
+			else
+				rs[:result] = 'finish coding javascript!'
+			end
+			rs[:success] = true
+		rescue Exception => e
+			rs[:result] = e.message
+			rs[:success] = false
+		end
+		# sleep(5)
+		render :json=>rs
+	end
 end

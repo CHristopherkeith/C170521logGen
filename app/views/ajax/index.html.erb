@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>data type</title>
+	<style type="text/css">
+		.acoder{
+			height: 100px;
+			width: 700px;
+			border: solid 1px;
+		}
+		.codeMonkey{
+			border-color: blue
+		}
+		.codeGirl{
+			border-color: pink
+		}
+		div{
+			margin: 5px;
+		}
+	</style>
+</head>
+<body>
+<div class="acoder codeMonkey" id="codeMonkey">
+	<p>Hi 我是程序猿</p>
+	<input id="codeMonkeyDo" type="text" />
+</div>
+<div class="acoder codeGirl" id="codeGirl">
+	<p>Hi 我是程序媛</p>
+	<input id="codeGirlDo" type="text" />
+</div>
+</body>
+<script type="text/javascript" src="./js/jquery-2.2.2.js"></script>
+<script type="text/javascript">
+
+	//*********使用Jquery重构
+	var params = {};
+	var codingSth = ''
+	$('#codeMonkey').on('click',function(){
+		alert('coding ruby...');
+		// console.log('ajax start')
+		params.coderId = 'codeMonkey';
+		doSthByAjax(params);
+		// console.log('code end')
+		// $('#codeMonkeyDo').val(codingSth);
+	})
+	$('#codeGirl').on('click',function(){
+		alert('coding javascript...');
+		params.coderId = 'codeGirl';
+		doSthByAjax(params);
+		// $('#codeGirlDo').val(codingSth);
+	})
+	function doSthByAjax(params){
+		$.ajax({
+		  url: 'http://localhost:3000/project/getDatas',
+		  type: 'POST',
+		  data: params,
+		  dataType: 'json',
+		  success: function(echoData, textStatus, jqXHR){
+		  	if(echoData.success){
+		  		// console.log('ajax end')
+		  		codingSth = echoData.result;
+		  		if(this.data.split('=')[1] === 'codeMonkey'){
+		  			$('#codeMonkeyDo').val(codingSth);
+		  		}else{
+		  			$('#codeGirlDo').val(codingSth);
+		  		}
+		  	}else{
+		  		alert(echoData.result)
+		  	}
+		  },
+		  error: function(){
+		  	alert('error occur')
+		  }
+		  
+		});
+	}
+</script>
+</html>
